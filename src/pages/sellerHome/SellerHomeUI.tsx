@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Paper } from "@mui/material";
-import Paperbase from "../../components/sellerHomeComponents/Paperbase";
+import Paperbase from "../../components/layout/Paperbase";
 
 type Props = {};
 
