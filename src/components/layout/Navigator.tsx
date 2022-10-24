@@ -17,6 +17,7 @@ import SettingsInputComponentIcon from "@mui/icons-material/SettingsInputCompone
 import TimerIcon from "@mui/icons-material/Timer";
 import SettingsIcon from "@mui/icons-material/Settings";
 import PhonelinkSetupIcon from "@mui/icons-material/PhonelinkSetup";
+import { myColors } from "../../helpers/colors";
 
 const categories = [
   {
@@ -48,9 +49,9 @@ const categories = [
 ];
 
 const item = {
-  py: "2px",
+  py: "10px",
   px: 3,
-  color: "rgba(255, 255, 255, 0.7)",
+  color: myColors.ligthText,
   "&:hover, &:focus": {
     bgcolor: "rgba(255, 255, 255, 0.08)",
   },
@@ -73,17 +74,17 @@ export default function Navigator(props: any) {
         >
           Paperbase
         </ListItem>
-        <ListItem sx={{ ...item, ...itemCategory }}>
+        {/* <ListItem sx={{ ...item, ...itemCategory }}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText>Project Overview</ListItemText>
-        </ListItem>
+        </ListItem> */}
         {categories.map(({ id, children }) => (
-          <Box key={id} sx={{ bgcolor: "#101F33" }}>
-            <ListItem sx={{ py: 2, px: 3 }}>
+          <Box key={id} sx={{ bgcolor: myColors.blueDarker }}>
+            {/* <ListItem sx={{ py: 2, px: 3 }}>
               <ListItemText sx={{ color: "#fff" }}>{id}</ListItemText>
-            </ListItem>
+            </ListItem> */}
             {children.map(({ id: childId, icon, active }) => (
               <ListItem disablePadding key={childId}>
                 <ListItemButton selected={active} sx={item}>
@@ -92,7 +93,7 @@ export default function Navigator(props: any) {
                 </ListItemButton>
               </ListItem>
             ))}
-            <Divider sx={{ mt: 2 }} />
+            {/* <Divider sx={{ mt: 2 }} /> */}
           </Box>
         ))}
       </List>

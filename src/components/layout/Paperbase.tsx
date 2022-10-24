@@ -8,6 +8,8 @@ import Link from "@mui/material/Link";
 import Navigator from "./Navigator";
 import Content from "./Content";
 import Header from "./Header";
+import Dashboard from "../dashboard/Dashboard";
+import { myColors } from "../../helpers/colors";
 
 function Copyright() {
   return (
@@ -21,21 +23,9 @@ function Copyright() {
   );
 }
 
-let customColors = {
-  primary: {
-    light: "#63ccff",
-    main: "#009be5",
-    dark: "#006db3",
-  },
-  important: "#eb0450",
-  blueDarker: "#081627",
-  dividerSecondary: "rgb(255,255,255,0.15)",
-  selectedItem: "#4fc3f7",
-};
-
 let theme = createTheme({
   palette: {
-    primary: customColors.primary,
+    primary: myColors.primary,
   },
   typography: {
     h5: {
@@ -67,7 +57,7 @@ theme = {
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          backgroundColor: customColors.blueDarker,
+          backgroundColor: myColors.blueDarker,
           borderRight: `0px`,
         },
       },
@@ -75,7 +65,7 @@ theme = {
     MuiBadge: {
       styleOverrides: {
         badge: {
-          backgroundColor: customColors.important
+          backgroundColor: myColors.important,
         },
       },
     },
@@ -136,7 +126,7 @@ theme = {
     MuiDivider: {
       styleOverrides: {
         root: {
-          backgroundColor: customColors.dividerSecondary,
+          backgroundColor: myColors.dividerSecondary,
         },
       },
     },
@@ -144,6 +134,7 @@ theme = {
       styleOverrides: {
         root: {
           //borderRight:0
+         // borderRight: `2px solid red`,
         },
       },
     },
@@ -151,7 +142,8 @@ theme = {
       styleOverrides: {
         root: {
           "&.Mui-selected": {
-            color: customColors.selectedItem,
+            color: myColors.selectedItem,
+            backgroundColor: myColors.selectedItemBackground,
           },
         },
       },
@@ -192,7 +184,7 @@ theme = {
           justifyContent: "center",
         },
         colorPrimary: {
-          backgroundColor: customColors.blueDarker,
+          backgroundColor: myColors.blueDarker,
         },
       },
     },
@@ -235,15 +227,9 @@ export default function Paperbase() {
         </Box>
         <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
           <Header onDrawerToggle={handleDrawerToggle} />
-          <Box
-            component="main"
-            sx={{ flex: 1, py: 6, px: 4, bgcolor: "#eaeff1" }}
-          >
-            <Content />
-          </Box>
-          <Box component="footer" sx={{ p: 2, bgcolor: "#eaeff1" }}>
-            <Copyright />
-          </Box>
+
+          <Dashboard />
+         
         </Box>
       </Box>
     </ThemeProvider>
