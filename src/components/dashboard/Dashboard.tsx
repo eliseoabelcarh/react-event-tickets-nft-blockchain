@@ -1,5 +1,4 @@
 import React from "react";
-import HeaderContent from "../layout/HeaderContent";
 import Box from "@mui/material/Box";
 import Content from "../layout/Content";
 import Paper from "@mui/material/Paper";
@@ -17,7 +16,8 @@ import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import { Container } from "@mui/material";
+import { colors, Container } from "@mui/material";
+import HeaderTitle from "../layout/HeaderTitle";
 type Props = {};
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -42,9 +42,9 @@ const classes = {
 export default function Dashboard({}: Props) {
   return (
     <React.Fragment>
-      <HeaderContent />
-      <Box sx={{ flexGrow: 1, padding: 2 }}>
-        <Grid container spacing={3}>
+      <HeaderTitle />
+      <Box sx={{ flexGrow: 1, padding: 2 , backgroundColor: 'transparent'}}>
+        <Grid container spacing={1}>
           {/*This item will be 12 units on extra small screens */}
           {/*But will be 4 units on small screens */}
           <Grid item xs={12} sm={4}>

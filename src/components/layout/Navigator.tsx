@@ -18,6 +18,7 @@ import TimerIcon from "@mui/icons-material/Timer";
 import SettingsIcon from "@mui/icons-material/Settings";
 import PhonelinkSetupIcon from "@mui/icons-material/PhonelinkSetup";
 import { myColors } from "../../helpers/colors";
+import { paperClasses } from "@mui/material/Paper";
 
 const categories = [
   {
@@ -53,7 +54,7 @@ const item = {
   px: 3,
   color: myColors.ligthText,
   "&:hover, &:focus": {
-    bgcolor: "rgba(255, 255, 255, 0.08)",
+    bgcolor: "rgba(255, 255, 255, 0.04)",
   },
 };
 
@@ -63,11 +64,25 @@ const itemCategory = {
   px: 3,
 };
 
+const styleDrawer = {
+  background:
+    // `radial-gradient(circle, ${myColors.blueDarker} 0%, ${myColors.overlay} 70%)`,
+    `linear-gradient(90deg, ${myColors.blueDarker} 0%, ${myColors.overlay} 150%)`,
+};
+const overlayDrawer = "rgba(8,22,39,0.6)";
+
 export default function Navigator(props: any) {
   const { ...other } = props;
 
   return (
-    <Drawer variant="permanent" {...other}>
+    <Drawer
+      variant="permanent"
+      sx={{
+        [`& .${paperClasses.root}`]: props.isMobile ? styleDrawer : {},
+        backgroundColor: overlayDrawer,
+      }}
+      {...other}
+    >
       <List disablePadding>
         <ListItem
           sx={{ ...item, ...itemCategory, ...props.logocontainerstyle }}
@@ -80,8 +95,14 @@ export default function Navigator(props: any) {
           </ListItemIcon>
           <ListItemText>Project Overview</ListItemText>
         </ListItem> */}
+
+        <Divider sx={{ mt: 3, backgroundColor: "transparent" }} />
         {categories.map(({ id, children }) => (
-          <Box key={id} sx={{ bgcolor: myColors.blueDarker }}>
+          <Box
+            key={id}
+            sx={{ bgcolor: "transparent" }}
+            //myColors.blueDarker
+          >
             {/* <ListItem sx={{ py: 2, px: 3 }}>
               <ListItemText sx={{ color: "#fff" }}>{id}</ListItemText>
             </ListItem> */}

@@ -14,6 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import Badge from "@mui/material/Badge";
+import { myColors } from '../../helpers/colors';
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
@@ -24,7 +25,7 @@ export default function HeaderTitle({}: Props) {
     <React.Fragment>
         <AppBar
         component="div"
-        color="primary"
+        color="transparent"//primary
         position="static"
         elevation={0}
         sx={{ zIndex: 0 }}
@@ -32,7 +33,7 @@ export default function HeaderTitle({}: Props) {
         <Toolbar>
           <Grid container alignItems="center" spacing={1}>
             <Grid item xs>
-              <Typography color="inherit" variant="h6" component="h1">
+              <Typography color={myColors.ligthText} variant="h6" component="h1">
                 AuthenticationTile
               </Typography>
             </Grid>
@@ -40,7 +41,7 @@ export default function HeaderTitle({}: Props) {
               <Button
                 sx={{ borderColor: lightColor }}
                 variant="outlined"
-                color="inherit"
+                color="secondary"
                 size="small"
               >
                 Web setup
@@ -48,7 +49,7 @@ export default function HeaderTitle({}: Props) {
             </Grid>
             <Grid item>
               <Tooltip title="Help">
-                <IconButton color="inherit">
+                <IconButton color="secondary">
                   <HelpIcon />
                 </IconButton>
               </Tooltip>

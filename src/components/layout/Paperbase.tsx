@@ -11,21 +11,10 @@ import Header from "./Header";
 import Dashboard from "../dashboard/Dashboard";
 import { myColors } from "../../helpers/colors";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}.
-    </Typography>
-  );
-}
-
 let theme = createTheme({
   palette: {
     primary: myColors.primary,
+    secondary: myColors.secondary,
   },
   typography: {
     h5: {
@@ -57,7 +46,7 @@ theme = {
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          backgroundColor: myColors.blueDarker,
+          backgroundColor: "transparent", //myColors.blueDarker
           borderRight: `0px`,
         },
       },
@@ -134,7 +123,7 @@ theme = {
       styleOverrides: {
         root: {
           //borderRight:0
-         // borderRight: `2px solid red`,
+          // borderRight: `2px solid red`,
         },
       },
     },
@@ -142,8 +131,8 @@ theme = {
       styleOverrides: {
         root: {
           "&.Mui-selected": {
-            color: myColors.selectedItem,
-            backgroundColor: myColors.selectedItemBackground,
+            color: myColors.primary.light,
+            backgroundColor: "transparent",
           },
         },
       },
@@ -184,7 +173,7 @@ theme = {
           justifyContent: "center",
         },
         colorPrimary: {
-          backgroundColor: myColors.blueDarker,
+          //backgroundColor: myColors.blueDarker,
         },
       },
     },
@@ -202,9 +191,14 @@ export default function Paperbase() {
     setMobileOpen(!mobileOpen);
   };
 
+  const stylesBox = {
+    display: "flex",
+    minHeight: "100vh",
+    background: `radial-gradient(circle, ${myColors.blueDarker} 0%, ${myColors.overlay} 200%)`,
+  };
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: "flex", minHeight: "100vh" }}>
+      <Box sx={stylesBox}>
         <CssBaseline />
         <Box
           component="nav"
@@ -217,6 +211,7 @@ export default function Paperbase() {
               open={mobileOpen}
               onClose={handleDrawerToggle}
               logocontainerstyle={logoContainerStyle}
+              isMobile={true}
             />
           )}
           <Navigator
@@ -229,7 +224,6 @@ export default function Paperbase() {
           <Header onDrawerToggle={handleDrawerToggle} />
 
           <Dashboard />
-         
         </Box>
       </Box>
     </ThemeProvider>

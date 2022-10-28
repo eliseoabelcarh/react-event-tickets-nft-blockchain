@@ -14,8 +14,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import Badge from "@mui/material/Badge";
-
-const lightColor = "rgba(255, 255, 255, 0.7)";
+import { myColors } from "../../helpers/colors";
 
 interface HeaderProps {
   onDrawerToggle: () => void;
@@ -31,7 +30,7 @@ export default function Header(props: HeaderProps) {
   return (
     <React.Fragment>
       <AppBar
-        color="primary"
+        color="transparent" //primary
         position="sticky"
         elevation={0}
         style={itemCategory}
@@ -40,7 +39,7 @@ export default function Header(props: HeaderProps) {
           <Grid container spacing={1} alignItems="center">
             <Grid sx={{ display: { sm: "none", xs: "block" } }} item>
               <IconButton
-                color="inherit"
+                color="secondary"
                 aria-label="open drawer"
                 onClick={onDrawerToggle}
                 edge="start"
@@ -55,7 +54,7 @@ export default function Header(props: HeaderProps) {
                 variant="body2"
                 sx={{
                   textDecoration: "none",
-                  color: lightColor,
+                  color: myColors.ligthText,
                   "&:hover": {
                     color: "common.white",
                   },
@@ -70,7 +69,7 @@ export default function Header(props: HeaderProps) {
               <Tooltip title="Alerts • No alerts">
                 <IconButton color="inherit">
                   <Badge badgeContent={4} color="warning">
-                    <NotificationsIcon />
+                    <NotificationsIcon color="secondary" />
                   </Badge> 
                 </IconButton>
               </Tooltip>
