@@ -6,7 +6,6 @@ import Header from "./Header";
 import Dashboard from "../dashboard/Dashboard";
 import { Theme } from "@mui/material";
 
-
 type Props = {
   theme: Theme;
   drawerWidth: number;

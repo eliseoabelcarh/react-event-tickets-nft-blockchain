@@ -20,17 +20,7 @@ import PhonelinkSetupIcon from "@mui/icons-material/PhonelinkSetup";
 import { myColors } from "../../helpers/colors";
 import { paperClasses } from "@mui/material/Paper";
 import { type } from "@testing-library/user-event/dist/types/setup/directApi";
-
-type ItemProps = {
-  id: string;
-  icon: JSX.Element;
-  active?: boolean;
-};
-
-type CategoryProps = {
-  id: string;
-  children: ItemProps[];
-};
+import { CategoryProps } from "../../data/categoriesDrawer";
 
 type Props = {
   categoriesDrawer: CategoryProps[];
@@ -41,6 +31,7 @@ type Props = {
   logoContainerStyle: React.CSSProperties;
   sxDrawer: any;
   onClose: () => void;
+  handleItemDrawerClick: (categoryID: string, childrenID: string) => void;
 };
 
 export default function Navigator(props: Props) {
@@ -53,6 +44,7 @@ export default function Navigator(props: Props) {
     logoContainerStyle,
     sxDrawer,
     onClose,
+    handleItemDrawerClick,
   } = props;
 
   return (
@@ -84,7 +76,11 @@ export default function Navigator(props: Props) {
           <Box key={id} sx={{ bgcolor: "transparent" }}>
             {children.map(({ id: childId, icon, active }) => (
               <ListItem disablePadding key={childId}>
-                <ListItemButton selected={active} sx={styles.item}>
+                <ListItemButton
+                  selected={active}
+                  sx={styles.item}
+                  onClick={() => handleItemDrawerClick(id, childId)}
+                >
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText>{childId}</ListItemText>
                 </ListItemButton>
