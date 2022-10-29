@@ -5,6 +5,6 @@ type Props = {}
 
 export default function SellerHomeScreen({}: Props) {
   return (
-    <SellerHomeUI/>
+    <SellerHomeUI />
   )
 }

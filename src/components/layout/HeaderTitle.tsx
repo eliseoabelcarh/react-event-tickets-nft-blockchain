@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -14,18 +14,20 @@ import Toolbar from "@mui/material/Toolbar";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import Badge from "@mui/material/Badge";
-import { myColors } from '../../helpers/colors';
+import { myColors } from "../../helpers/colors";
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
-type Props = {}
+type Props = {
+  title?: string;
+};
 
-export default function HeaderTitle({}: Props) {
+export default function HeaderTitle({ title = "Titulo" }: Props) {
   return (
     <React.Fragment>
-        <AppBar
+      <AppBar
         component="div"
-        color="transparent"//primary
+        color="transparent" //primary
         position="static"
         elevation={0}
         sx={{ zIndex: 0 }}
@@ -33,8 +35,12 @@ export default function HeaderTitle({}: Props) {
         <Toolbar>
           <Grid container alignItems="center" spacing={1}>
             <Grid item xs>
-              <Typography color={myColors.ligthText} variant="h6" component="h1">
-                AuthenticationTile
+              <Typography
+                color={myColors.ligthText}
+                variant="h6"
+                component="h1"
+              >
+                {title}
               </Typography>
             </Grid>
             <Grid item>
@@ -58,5 +64,5 @@ export default function HeaderTitle({}: Props) {
         </Toolbar>
       </AppBar>
     </React.Fragment>
-  )
+  );
 }

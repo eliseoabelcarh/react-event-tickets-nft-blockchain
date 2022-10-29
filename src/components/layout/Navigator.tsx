@@ -19,105 +19,104 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import PhonelinkSetupIcon from "@mui/icons-material/PhonelinkSetup";
 import { myColors } from "../../helpers/colors";
 import { paperClasses } from "@mui/material/Paper";
+import { type } from "@testing-library/user-event/dist/types/setup/directApi";
 
-const categories = [
-  {
-    id: "Build",
-    children: [
-      {
-        id: "Authentication",
-        icon: <PeopleIcon />,
-        active: true,
-      },
-      { id: "Database", icon: <DnsRoundedIcon /> },
-      { id: "Storage", icon: <PermMediaOutlinedIcon /> },
-      { id: "Hosting", icon: <PublicIcon /> },
-      { id: "Functions", icon: <SettingsEthernetIcon /> },
-      {
-        id: "Machine learning",
-        icon: <SettingsInputComponentIcon />,
-      },
-    ],
-  },
-  {
-    id: "Quality",
-    children: [
-      { id: "Analytics", icon: <SettingsIcon /> },
-      { id: "Performance", icon: <TimerIcon /> },
-      { id: "Test Lab", icon: <PhonelinkSetupIcon /> },
-    ],
-  },
-];
-
-const item = {
-  py: "10px",
-  px: 3,
-  color: myColors.ligthText,
-  "&:hover, &:focus": {
-    bgcolor: "rgba(255, 255, 255, 0.04)",
-  },
+type ItemProps = {
+  id: string;
+  icon: JSX.Element;
+  active?: boolean;
 };
 
-const itemCategory = {
-  boxShadow: "0 -1px 0 rgb(255,255,255,0.1) inset",
-  py: 1.5,
-  px: 3,
+type CategoryProps = {
+  id: string;
+  children: ItemProps[];
 };
 
-const styleDrawer = {
-  background:
-    // `radial-gradient(circle, ${myColors.blueDarker} 0%, ${myColors.overlay} 70%)`,
-    `linear-gradient(90deg, ${myColors.blueDarker} 0%, ${myColors.overlay} 150%)`,
+type Props = {
+  categoriesDrawer: CategoryProps[];
+  PaperProps: any;
+  variant: "permanent" | "persistent" | "temporary";
+  isMobile: boolean;
+  open: boolean;
+  logoContainerStyle: React.CSSProperties;
+  sxDrawer: any;
+  onClose: () => void;
 };
-const overlayDrawer = "rgba(8,22,39,0.6)";
 
-export default function Navigator(props: any) {
-  const { ...other } = props;
+export default function Navigator(props: Props) {
+  const {
+    categoriesDrawer,
+    PaperProps,
+    variant,
+    isMobile,
+    open,
+    logoContainerStyle,
+    sxDrawer,
+    onClose,
+  } = props;
 
   return (
     <Drawer
-      variant="permanent"
+      variant={variant}
       sx={{
-        [`& .${paperClasses.root}`]: props.isMobile ? styleDrawer : {},
-        backgroundColor: overlayDrawer,
+        [`& .${paperClasses.root}`]: isMobile ? styles.styleDrawer : {},
+        backgroundColor: styles.overlayDrawer,
+        ...sxDrawer,
       }}
-      {...other}
+      PaperProps={PaperProps}
+      open={open}
+      onClose={onClose}
     >
       <List disablePadding>
         <ListItem
-          sx={{ ...item, ...itemCategory, ...props.logocontainerstyle }}
+          sx={{
+            ...styles.item,
+            ...styles.itemCategory,
+            ...logoContainerStyle,
+          }}
         >
           Paperbase
         </ListItem>
-        {/* <ListItem sx={{ ...item, ...itemCategory }}>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText>Project Overview</ListItemText>
-        </ListItem> */}
 
         <Divider sx={{ mt: 3, backgroundColor: "transparent" }} />
-        {categories.map(({ id, children }) => (
-          <Box
-            key={id}
-            sx={{ bgcolor: "transparent" }}
-            //myColors.blueDarker
-          >
-            {/* <ListItem sx={{ py: 2, px: 3 }}>
-              <ListItemText sx={{ color: "#fff" }}>{id}</ListItemText>
-            </ListItem> */}
+
+        {categoriesDrawer.map(({ id, children }) => (
+          <Box key={id} sx={{ bgcolor: "transparent" }}>
             {children.map(({ id: childId, icon, active }) => (
               <ListItem disablePadding key={childId}>
-                <ListItemButton selected={active} sx={item}>
+                <ListItemButton selected={active} sx={styles.item}>
                   <ListItemIcon>{icon}</ListItemIcon>
                   <ListItemText>{childId}</ListItemText>
                 </ListItemButton>
               </ListItem>
             ))}
-            {/* <Divider sx={{ mt: 2 }} /> */}
           </Box>
         ))}
       </List>
     </Drawer>
   );
 }
+
+const styles = {
+  item: {
+    py: "10px",
+    px: 3,
+    color: myColors.ligthText,
+    "&:hover, &:focus": {
+      bgcolor: "rgba(255, 255, 255, 0.04)",
+    },
+  },
+
+  itemCategory: {
+    boxShadow: "0 -1px 0 rgb(255,255,255,0.1) inset",
+    py: 1.5,
+    px: 3,
+  },
+
+  styleDrawer: {
+    background:
+      // `radial-gradient(circle, ${myColors.blueDarker} 0%, ${myColors.overlay} 70%)`,
+      `linear-gradient(90deg, ${myColors.blueDarker} 0%, ${myColors.overlay} 150%)`,
+  },
+  overlayDrawer: "rgba(8,22,39,0.6)",
+};

@@ -1,229 +1,43 @@
 import * as React from "react";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import Navigator from "./Navigator";
-import Content from "./Content";
 import Header from "./Header";
 import Dashboard from "../dashboard/Dashboard";
-import { myColors } from "../../helpers/colors";
+import { Theme } from "@mui/material";
 
-let theme = createTheme({
-  palette: {
-    primary: myColors.primary,
-    secondary: myColors.secondary,
-  },
-  typography: {
-    h5: {
-      fontWeight: 500,
-      fontSize: 26,
-      letterSpacing: 0.5,
-    },
-  },
-  shape: {
-    borderRadius: 8,
-  },
-  components: {
-    MuiTab: {
-      defaultProps: {
-        disableRipple: true,
-      },
-    },
-  },
-  mixins: {
-    toolbar: {
-      minHeight: 48,
-    },
-  },
-});
 
-theme = {
-  ...theme,
-  components: {
-    MuiDrawer: {
-      styleOverrides: {
-        paper: {
-          backgroundColor: "transparent", //myColors.blueDarker
-          borderRight: `0px`,
-        },
-      },
-    },
-    MuiBadge: {
-      styleOverrides: {
-        badge: {
-          backgroundColor: myColors.important,
-        },
-      },
-    },
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: "none",
-        },
-        contained: {
-          boxShadow: "none",
-          "&:active": {
-            boxShadow: "none",
-          },
-        },
-      },
-    },
-    MuiTabs: {
-      styleOverrides: {
-        root: {
-          marginLeft: theme.spacing(1),
-        },
-        indicator: {
-          height: 3,
-          borderTopLeftRadius: 3,
-          borderTopRightRadius: 3,
-          backgroundColor: theme.palette.common.white,
-        },
-      },
-    },
-    MuiTab: {
-      styleOverrides: {
-        root: {
-          textTransform: "none",
-          margin: "0 16px",
-          minWidth: 0,
-          padding: 0,
-          [theme.breakpoints.up("md")]: {
-            padding: 0,
-            minWidth: 0,
-          },
-        },
-      },
-    },
-    MuiIconButton: {
-      styleOverrides: {
-        root: {
-          padding: theme.spacing(1),
-        },
-      },
-    },
-    MuiTooltip: {
-      styleOverrides: {
-        tooltip: {
-          borderRadius: 4,
-        },
-      },
-    },
-    MuiDivider: {
-      styleOverrides: {
-        root: {
-          backgroundColor: myColors.dividerSecondary,
-        },
-      },
-    },
-    MuiListItem: {
-      styleOverrides: {
-        root: {
-          //borderRight:0
-          // borderRight: `2px solid red`,
-        },
-      },
-    },
-    MuiListItemButton: {
-      styleOverrides: {
-        root: {
-          "&.Mui-selected": {
-            color: myColors.primary.light,
-            backgroundColor: "transparent",
-          },
-        },
-      },
-    },
-    MuiListItemText: {
-      styleOverrides: {
-        primary: {
-          fontSize: 14,
-          fontWeight: theme.typography.fontWeightMedium,
-        },
-      },
-    },
-    MuiListItemIcon: {
-      styleOverrides: {
-        root: {
-          color: "inherit",
-          minWidth: "auto",
-          marginRight: theme.spacing(2),
-          "& svg": {
-            fontSize: 20,
-          },
-        },
-      },
-    },
-    MuiAvatar: {
-      styleOverrides: {
-        root: {
-          width: 32,
-          height: 32,
-        },
-      },
-    },
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          height: 60,
-          //alignItems: "center",
-          justifyContent: "center",
-        },
-        colorPrimary: {
-          //backgroundColor: myColors.blueDarker,
-        },
-      },
-    },
-  },
+type Props = {
+  theme: Theme;
+  drawerWidth: number;
+  navigator: JSX.Element;
+  handleDrawerToggle: () => void;
+  stylesBody: React.CSSProperties;
 };
 
-const drawerWidth = 256;
-const logoContainerStyle = { fontSize: 22, color: "#fff", height: "60px" };
-
-export default function Paperbase() {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const stylesBox = {
-    display: "flex",
-    minHeight: "100vh",
-    background: `radial-gradient(circle, ${myColors.blueDarker} 0%, ${myColors.overlay} 200%)`,
-  };
+export default function Paperbase({
+  theme,
+  drawerWidth,
+  navigator,
+  handleDrawerToggle,
+  stylesBody,
+}: Props) {
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={stylesBox}>
+      <Box sx={stylesBody}>
         <CssBaseline />
         <Box
           component="nav"
           sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         >
-          {isSmUp ? null : (
-            <Navigator
-              PaperProps={{ style: { width: drawerWidth } }}
-              variant="temporary"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-              logocontainerstyle={logoContainerStyle}
-              isMobile={true}
-            />
-          )}
-          <Navigator
-            PaperProps={{ style: { width: drawerWidth } }}
-            sx={{ display: { sm: "block", xs: "none" } }}
-            logocontainerstyle={logoContainerStyle}
-          />
+          {navigator}
         </Box>
         <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
+
           <Header onDrawerToggle={handleDrawerToggle} />
 
           <Dashboard />
+          
         </Box>
       </Box>
     </ThemeProvider>

@@ -6,7 +6,7 @@ import Slider from "@mui/material/Slider";
 import PopoverMenu from "./PopoverMenu";
 import ProTip from "./ProTip";
 import Paperbase from "./components/layout/Paperbase";
-import SellerHomeScreen from "./pages/sellerHome/SellerHomeScreen";
+import SellerHomeScreen from "./pages/seller/SellerHomeScreen";
 
 function Copyright() {
   return (
