@@ -3,7 +3,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Header from "./Header";
-import Dashboard from "../dashboard/Dashboard";
+import Dashboard from "../../pages/Dashboard";
 import { Theme } from "@mui/material";
 
 type Props = {
@@ -12,6 +12,7 @@ type Props = {
   navigator: JSX.Element;
   handleDrawerToggle: () => void;
   stylesBody: React.CSSProperties;
+  children: React.ReactNode;
 };
 
 export default function Paperbase({
@@ -20,6 +21,7 @@ export default function Paperbase({
   navigator,
   handleDrawerToggle,
   stylesBody,
+  children,
 }: Props) {
   return (
     <ThemeProvider theme={theme}>
@@ -32,11 +34,10 @@ export default function Paperbase({
           {navigator}
         </Box>
         <Box sx={{ flex: 1, display: "flex", flexDirection: "column" }}>
-
           <Header onDrawerToggle={handleDrawerToggle} />
 
-          <Dashboard />
-          
+          {children}
+
         </Box>
       </Box>
     </ThemeProvider>

@@ -1,6 +1,8 @@
 import * as React from "react";
-import SellerHomeScreen from "./pages/seller/SellerHomeScreen";
+import SellerScreen from "./components/layout/seller/SellerScreen";
+import { MainRoutes } from "./routes/Routes";
+
 
 export default function App() {
-  return <SellerHomeScreen />;
+  return <SellerScreen children={<MainRoutes/>} />;
 }

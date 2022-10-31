@@ -1,26 +1,17 @@
 import * as React from "react";
 import Divider from "@mui/material/Divider";
-import Drawer, { DrawerProps } from "@mui/material/Drawer";
+import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import Box from "@mui/material/Box";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import HomeIcon from "@mui/icons-material/Home";
-import PeopleIcon from "@mui/icons-material/People";
-import DnsRoundedIcon from "@mui/icons-material/DnsRounded";
-import PermMediaOutlinedIcon from "@mui/icons-material/PhotoSizeSelectActual";
-import PublicIcon from "@mui/icons-material/Public";
-import SettingsEthernetIcon from "@mui/icons-material/SettingsEthernet";
-import SettingsInputComponentIcon from "@mui/icons-material/SettingsInputComponent";
-import TimerIcon from "@mui/icons-material/Timer";
-import SettingsIcon from "@mui/icons-material/Settings";
-import PhonelinkSetupIcon from "@mui/icons-material/PhonelinkSetup";
 import { myColors } from "../../helpers/colors";
 import { paperClasses } from "@mui/material/Paper";
-import { type } from "@testing-library/user-event/dist/types/setup/directApi";
-import { CategoryProps } from "../../data/categoriesDrawer";
+import { CategoryProps, getPathDrawer, pathsDrawer } from "../../data/ItemsDrawer";
+import { getIcon } from "../../data/ItemsDrawer";
+import { Link } from "react-router-dom";
 
 type Props = {
   categoriesDrawer: CategoryProps[];
@@ -67,24 +58,34 @@ export default function Navigator(props: Props) {
             ...logoContainerStyle,
           }}
         >
-          Paperbase
+          <Link
+            style={{ textDecoration: "none", color: "white" }}
+            to={pathsDrawer.HOME}
+          >
+            EVENTS
+          </Link>
         </ListItem>
 
         <Divider sx={{ mt: 3, backgroundColor: "transparent" }} />
-
         {categoriesDrawer.map(({ id, children }) => (
           <Box key={id} sx={{ bgcolor: "transparent" }}>
-            {children.map(({ id: childId, icon, active }) => (
-              <ListItem disablePadding key={childId}>
-                <ListItemButton
-                  selected={active}
-                  sx={styles.item}
-                  onClick={() => handleItemDrawerClick(id, childId)}
-                >
-                  <ListItemIcon>{icon}</ListItemIcon>
-                  <ListItemText>{childId}</ListItemText>
-                </ListItemButton>
-              </ListItem>
+            {children.map(({ id: childId, active }, index) => (
+              <Link
+                key={index}
+                style={{ textDecoration: "none", color: "white" }}
+                to={getPathDrawer(childId)}
+              >
+                <ListItem disablePadding key={childId}>
+                  <ListItemButton
+                    selected={active}
+                    sx={styles.item}
+                    onClick={() => handleItemDrawerClick(id, childId)}
+                  >
+                    <ListItemIcon>{getIcon(childId)}</ListItemIcon>
+                    <ListItemText>{childId}</ListItemText>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
             ))}
           </Box>
         ))}

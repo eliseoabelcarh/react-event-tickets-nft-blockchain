@@ -1,19 +1,21 @@
 import React from "react";
 import { useMediaQuery } from "@mui/material";
-import Paperbase from "../../components/layout/Paperbase";
-import { myColors } from "../../helpers/colors";
-import Navigator from "../../components/layout/Navigator";
-import { theme } from "../../components/layout/Theme";
-import { CategoryProps } from "../../data/categoriesDrawer";
+import Paperbase from "../Paperbase";
+import { myColors } from "../../../helpers/colors";
+import Navigator from "../Navigator";
+import { theme } from "../Theme";
+import { CategoryProps } from "../../../data/ItemsDrawer";
 
 type Props = {
   categoriesDrawer: CategoryProps[];
   handleItemDrawerClick: (categoryID: string, childrenID:string) => void;
+  children: React.ReactNode;
 };
 
-export default function SellerHomeUI({
+export default function SellerUI({
   categoriesDrawer,
   handleItemDrawerClick,
+  children,
 }: Props) {
   const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -39,6 +41,7 @@ export default function SellerHomeUI({
       navigator={navigator}
       handleDrawerToggle={handleDrawerToggle}
       stylesBody={styles.stylesBody}
+      children={children}
     />
   );
 }
