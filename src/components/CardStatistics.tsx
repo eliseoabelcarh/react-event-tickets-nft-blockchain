@@ -15,57 +15,62 @@ import React from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { myColors } from "../helpers/colors";
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  >
-    •
-  </Box>
-);
-export default function CardStatistics() {
-  /*This item will be 12 units on extra small screens */
-  /*But will be 4 units on small screens */
+type Props = {
+  xs?: number;
+  sm?: number;
+  title?: string;
+  subtitle?: string;
+  totalNumber?: number;
+  percentage?: number;
+  timingText?: string;
+};
+
+export default function CardStatistics({
+  xs = 12,
+  sm = 4,
+  title = "Title",
+  subtitle = "",
+  totalNumber = 45,
+  percentage = 23,
+  timingText = "(vs last month)",
+}: Props) {
+  /*This item will be 12 units on extra small screens => XS field */
+  /*But will be 4 units on small screens => SM field */
   return (
-    <Grid item xs={12} sm={4}>
-      <Card sx={{ backgroundColor: "rgba(255,255,255,0.04)" }} elevation={2}>
+    <Grid item xs={xs} sm={sm}>
+      <Card sx={styles.card} elevation={2}>
         <CardHeader
-          sx={{ backgroundColor: "#333b48" , pb:0.8, pt:0.8}}
-          title="Numbers of Events"
+          sx={styles.cardHeader}
+          title={title}
           titleTypographyProps={{
             variant: "subtitle2",
             color: myColors.ligthText,
             fontWeight: "bold",
           }}
-          //subheader="September 14, 2016"
-          subheaderTypographyProps={{ variant: "subtitle2" }}
-        />
-        <CardContent
-          sx={{
+          subheader={subtitle ? subtitle : ""}
+          subheaderTypographyProps={{
+            variant: "subtitle2",
             color: myColors.ligthText,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-start",
-          
           }}
-        >
+        />
+        <CardContent sx={styles.cardContent}>
           <Typography
-            sx={{ mr: 1 , fontWeight: 'bold'}}
+            sx={{ mr: 1, fontWeight: "bold" }}
             variant="h5"
             component="div"
             display="inline-flex"
           >
-            45
+            {totalNumber}
           </Typography>
           <Typography
-            sx={{ mr: 0.4, fontWeight: "bold" , color: '#39ff14'}}
+            sx={{ mr: 0.4, fontWeight: "bold", color: myColors.greenNeon }}
             display="inline-flex"
             variant="caption"
           >
-            +23%
+            +{percentage}%
           </Typography>
           <Typography display="inline-flex" variant="caption">
-            (vs last week)
+            {timingText}
           </Typography>
         </CardContent>
       </Card>
@@ -74,12 +79,18 @@ export default function CardStatistics() {
 }
 
 const styles = {
-  paper: {
-    padding: 1,
-    textAlign: "center",
-    color: "blue",
-    fontFamily: "Roboto",
-    borderRadius: "5px",
-    elevation: 0,
+  card: {
+    backgroundColor: myColors.cardBackgroundColor,
+  },
+  cardHeader: {
+    backgroundColor: myColors.cardHeaderBackgroundColor,
+    pb: 0.8,
+    pt: 0.8,
+  },
+  cardContent: {
+    color: myColors.ligthText,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-start",
   },
 };

@@ -1,7 +1,7 @@
 export const myColors = {
     primary: {
       light: "#01c1ff",
-      main: "#009be5",
+      main: "#081627",
       dark: "#006db3",
     },
     secondary:{
@@ -19,5 +19,8 @@ export const myColors = {
     overlay: "#050035",
     backgroundBlueDarker: "rgba(8,22,39,0.7)",
     backgroundOverlay: "rgba(5,0,53,0.7)",
+    cardBackgroundColor: "rgba(45,85,55,0.2)",
+    cardHeaderBackgroundColor: "#29303b",
+    greenNeon: "#39ff14",
   };
   

@@ -14,7 +14,7 @@ export default function App() {
         alignItems: "center",
         height: "100vh",
         width: "100vw",
-        backgroundRepeat: "no-repeat",
+        backgroundRepeat: "repeat",
         backgroundSize: "cover",
 
         // add background image with linear gradient 180 deg rgba(5,0,53,0) with size auto cover and reapeat no repeat

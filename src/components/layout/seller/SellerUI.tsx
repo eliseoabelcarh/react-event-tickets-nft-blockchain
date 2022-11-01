@@ -55,7 +55,7 @@ export default function SellerUI({
 
 const styles = {
   overlayDrawer: "rgba(8,22,39,0.6)",
-  drawerWidth: 256,
+  drawerWidth: 230,//256 original
   logoContainerStyle: {
     fontSize: 22,
     color: myColors.ligthText,
@@ -70,6 +70,7 @@ const styles = {
   },
   stylesBodyIsSmDown: {
     display: "flex",
+    marginTop: "25px",
     minHeight: "100vh",
     background: `radial-gradient(circle, ${myColors.backgroundBlueDarker} 0%, ${myColors.backgroundOverlay} 200%)`,
   },

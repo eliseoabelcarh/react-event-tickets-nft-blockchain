@@ -30,7 +30,7 @@ export default function Header(props: HeaderProps) {
   return (
     <React.Fragment>
       <AppBar
-        color="transparent" //primary
+        color="primary" //primary
         position="sticky"
         elevation={0}
         style={itemCategory}

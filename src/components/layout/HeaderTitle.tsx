@@ -15,6 +15,7 @@ import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import Badge from "@mui/material/Badge";
 import { myColors } from "../../helpers/colors";
+import { CssBaseline } from "@mui/material";
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
@@ -25,6 +26,7 @@ type Props = {
 export default function HeaderTitle({ title = "Titulo" }: Props) {
   return (
     <React.Fragment>
+     
       <AppBar
         component="div"
         color="transparent" //primary

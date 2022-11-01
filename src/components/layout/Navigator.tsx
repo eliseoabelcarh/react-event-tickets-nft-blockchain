@@ -58,6 +58,10 @@ export default function Navigator(props: Props) {
             ...styles.item,
             ...styles.itemCategory,
             ...logoContainerStyle,
+            backgroundColor: myColors.primary.main,
+            "&:hover": {
+              backgroundColor: myColors.primary.main,
+            },
           }}
         >
           <Link
