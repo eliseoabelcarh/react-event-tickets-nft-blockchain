@@ -4,6 +4,7 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid"; // Grid version 1
 import HeaderTitle from "../components/layout/HeaderTitle";
 import { itemsDrawer } from "../data/ItemsDrawer";
+import CardStatistics from "../components/CardStatistics";
 
 type Props = {};
 
@@ -27,9 +28,7 @@ export default function Dashboard({}: Props) {
         <Grid container spacing={1}>
           {/*This item will be 12 units on extra small screens */}
           {/*But will be 4 units on small screens */}
-          <Grid item xs={12} sm={4}>
-            <Paper sx={classes.paper}>xs=12 sm=4</Paper>
-          </Grid>
+          <CardStatistics/>
           <Grid item xs={12} sm={4}>
             <Paper elevation={0} sx={classes.paper}>xs=12 sm=4</Paper>
           </Grid>

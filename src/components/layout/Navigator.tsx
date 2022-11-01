@@ -42,13 +42,15 @@ export default function Navigator(props: Props) {
     <Drawer
       variant={variant}
       sx={{
-        [`& .${paperClasses.root}`]: isMobile ? styles.styleDrawer : {},
-        backgroundColor: styles.overlayDrawer,
+        [`& .${paperClasses.root}`]: isMobile ? styles.styleDrawer : {position: "relative"},
         ...sxDrawer,
       }}
       PaperProps={PaperProps}
       open={open}
       onClose={onClose}
+      classes={{
+        paper: paperClasses.root,
+      }}
     >
       <List disablePadding>
         <ListItem
@@ -115,5 +117,5 @@ const styles = {
       // `radial-gradient(circle, ${myColors.blueDarker} 0%, ${myColors.overlay} 70%)`,
       `linear-gradient(90deg, ${myColors.blueDarker} 0%, ${myColors.overlay} 150%)`,
   },
-  overlayDrawer: "rgba(8,22,39,0.6)",
+
 };

@@ -8,7 +8,7 @@ import { CategoryProps } from "../../../data/ItemsDrawer";
 
 type Props = {
   categoriesDrawer: CategoryProps[];
-  handleItemDrawerClick: (categoryID: string, childrenID:string) => void;
+  handleItemDrawerClick: (categoryID: string, childrenID: string) => void;
   children: React.ReactNode;
 };
 
@@ -30,7 +30,14 @@ export default function SellerUI({
       logoContainerStyle={styles.logoContainerStyle}
       isMobile={isSmUp ? false : true}
       categoriesDrawer={categoriesDrawer}
-      sxDrawer={isSmUp ? { display: { sm: "block", xs: "none" } } : {}}
+      sxDrawer={
+        isSmUp
+          ? {
+              display: { sm: "block", xs: "none" },
+              backgroundColor: "transparent",
+            }
+          : { backgroundColor: styles.overlayDrawer }
+      }
       handleItemDrawerClick={handleItemDrawerClick}
     />
   );
@@ -40,22 +47,30 @@ export default function SellerUI({
       drawerWidth={styles.drawerWidth}
       navigator={navigator}
       handleDrawerToggle={handleDrawerToggle}
-      stylesBody={styles.stylesBody}
+      stylesBody={isSmUp ? styles.stylesBodyIsSmUp : styles.stylesBodyIsSmDown}
       children={children}
     />
   );
 }
 
 const styles = {
+  overlayDrawer: "rgba(8,22,39,0.6)",
   drawerWidth: 256,
   logoContainerStyle: {
     fontSize: 22,
     color: myColors.ligthText,
     height: "60px",
   },
-  stylesBody: {
+  stylesBodyIsSmUp: {
     display: "flex",
     minHeight: "100vh",
-    background: `radial-gradient(circle, ${myColors.blueDarker} 0%, ${myColors.overlay} 200%)`,
+    width: "1028px",
+    boxShadow: "0 0 20px 0 rgba(0,0,0,0.8)",
+    background: `radial-gradient(circle, ${myColors.backgroundBlueDarker} 0%, ${myColors.backgroundOverlay} 200%)`,
+  },
+  stylesBodyIsSmDown: {
+    display: "flex",
+    minHeight: "100vh",
+    background: `radial-gradient(circle, ${myColors.backgroundBlueDarker} 0%, ${myColors.backgroundOverlay} 200%)`,
   },
 };

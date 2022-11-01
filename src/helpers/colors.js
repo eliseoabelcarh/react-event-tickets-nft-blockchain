@@ -16,6 +16,8 @@ export const myColors = {
     lightBlueDarker: "#0d253f",
     primaryElement: "#101F33",
     ligthText: "rgba(255, 255, 255, 0.7)",
-    overlay: "#050035"
+    overlay: "#050035",
+    backgroundBlueDarker: "rgba(8,22,39,0.7)",
+    backgroundOverlay: "rgba(5,0,53,0.7)",
   };
   
