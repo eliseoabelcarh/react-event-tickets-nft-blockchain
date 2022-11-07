@@ -3,55 +3,23 @@ import HeaderTitle from "../components/layout/HeaderTitle";
 import { itemsDrawer } from "../data/ItemsDrawer";
 import CardStatistics from "../components/CardStatistics";
 import { myColors } from "../helpers/colors";
-import {
-  Typography,
-  Box,
-  Button,
-  Paper,
-  Grid,
-  Card,
-  Divider,
-  CircularProgress,
-  CardContent,
-  CardHeader,
-  Stack,
-} from "@mui/material";
-import { createStyles, styled } from "@mui/material/styles";
-import {
-  buildStyles,
-  CircularProgressbar,
-  CircularProgressbarWithChildren,
-} from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+import { Box, Grid, Card, Divider } from "@mui/material";
+//import "react-circular-progressbar/dist/styles.css";
 import CircularPercentage from "../components/CircularPercentage";
+import SearchBox from "../components/SearchBox";
+import LinearPercentage from "../components/LinearPercentage";
 
-import InputBase from "@mui/material/InputBase";
 
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
-import DirectionsIcon from "@mui/icons-material/Directions";
+const eventsSales = [
+  { title: "Event 1", percentage: 40 },
+  { title: "Event 2", percentage: 81 },
+  { title: "Event 3", percentage: 61 },
+  { title: "Event 4", percentage: 11 },
+  { title: "Event 5", percentage: 21 },
+]
+
 type Props = {};
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: "transparent",
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: myColors.ligthText,
-  boxShadow: "none",
-}));
-const ItemCircularProgress = styled(Paper)(({ theme }) => ({
-  backgroundColor: "transparent",
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: myColors.ligthText,
-  boxShadow: "none",
-  maxWidth: "120px",
-  marginBottom: "10px",
-  marginTop: "-5px",
-}));
-
-const percentage = 75;
 export default function Dashboard({}: Props) {
   return (
     <React.Fragment>
@@ -86,38 +54,30 @@ export default function Dashboard({}: Props) {
               <CircularPercentage />
             </Grid>
 
-            <Grid item xs={12} sm={9}>
-              <Paper
-                component="form"
-                sx={{
-                  p: "0px 4px",
-                  display: "flex",
-                  alignItems: "center",
-                  width: 300,
-                }}
-              >
-            
-                <InputBase
-                  sx={{ ml: 1, flex: 1 }}
-                  placeholder="Filter by event"
-                  inputProps={{ "aria-label": "filter by event" }}
-                />
-                <IconButton
-                  type="button"
-                  sx={{ p: "10px" }}
-                  aria-label="search"
-                >
-                  <SearchIcon />
-                </IconButton>
-                <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-                <IconButton
-                  color="primary"
-                  sx={{ p: "10px" }}
-                  aria-label="directions"
-                >
-                  <DirectionsIcon />
-                </IconButton>
-              </Paper>
+            <Grid
+              item
+              xs={12}
+              sm={9}
+              sx={{
+                // justifyContent: "center",
+                // alignItems: "center",
+                // display: "flex",
+                padding: 1,
+              }}
+            >
+              <SearchBox />
+
+              <Grid container spacing={2} sx={{ mt: 2,}}>
+
+                {eventsSales.map((event, index) => (
+
+                <Grid item xs={6} sm={4} key={index}>
+                  <LinearPercentage title={event.title} percentage={event.percentage} />
+                </Grid>
+                ))}
+
+
+              </Grid>
             </Grid>
           </Grid>
         </Card>
@@ -128,6 +88,7 @@ export default function Dashboard({}: Props) {
 const styles = {
   cardContainer: {
     backgroundColor: myColors.cardBackgroundColor,
+    padding: 2,
   },
   cardTicketsSold: {
     backgroundColor: "transparent",

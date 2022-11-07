@@ -1,5 +1,5 @@
 import React from "react";
-import SellerUI from "./SellerUI";
+import LayoutUI from "./LayoutUI";
 import {
   categoriesDrawer,
   CategoryProps,
@@ -15,7 +15,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function SellerScreen({children}: Props) {
+export default function LayoutScreen({children}: Props) {
   const categoriesDrawer = useSelector(
     (state: RootState) => state.drawerItems.items
   );
@@ -28,7 +28,7 @@ export default function SellerScreen({children}: Props) {
   };
 
   return (
-    <SellerUI
+    <LayoutUI
       categoriesDrawer={categoriesDrawer}
       handleItemDrawerClick={handleItemDrawerClick}
       children={children}

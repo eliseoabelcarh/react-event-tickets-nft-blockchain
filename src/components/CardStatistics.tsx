@@ -63,7 +63,7 @@ export default function CardStatistics({
             {totalNumber}
           </Typography>
           <Typography
-            sx={{ mr: 0.4, fontWeight: "bold", color: myColors.greenNeon }}
+            sx={{ mr: 0.4, fontWeight: "bold", color: myColors.neons.greenNeon }}
             display="inline-flex"
             variant="caption"
           >

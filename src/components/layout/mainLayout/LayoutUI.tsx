@@ -12,7 +12,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function SellerUI({
+export default function LayoutUI({
   categoriesDrawer,
   handleItemDrawerClick,
   children,
@@ -28,7 +28,7 @@ export default function SellerUI({
       open={mobileOpen}
       onClose={isSmUp ? () => {} : handleDrawerToggle}
       logoContainerStyle={styles.logoContainerStyle}
-      isMobile={isSmUp ? false : true}
+      isMobile={!isSmUp}
       categoriesDrawer={categoriesDrawer}
       sxDrawer={
         isSmUp
@@ -70,7 +70,7 @@ const styles = {
   },
   stylesBodyIsSmDown: {
     display: "flex",
-    marginTop: "25px",
+    //marginTop: "35px",// para bajar headertitle
     minHeight: "100vh",
     background: `radial-gradient(circle, ${myColors.backgroundBlueDarker} 0%, ${myColors.backgroundOverlay} 200%)`,
   },

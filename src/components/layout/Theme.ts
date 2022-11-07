@@ -1,10 +1,14 @@
+import { PaletteMode } from "@mui/material";
+import { amber, deepOrange, grey } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 import { myColors } from "../../helpers/colors";
+
 
 export let theme = createTheme({
     palette: {
       primary: myColors.primary,
       secondary: myColors.secondary,
+     
     },
     typography: {
       h5: {
