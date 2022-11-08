@@ -1,5 +1,5 @@
 import React from "react";
-import { myColors } from "../helpers/colors";
+import { myColors } from "../helpers/myColors";
 import { Typography, Box } from "@mui/material";
 import LinearProgress, {
   linearProgressClasses,

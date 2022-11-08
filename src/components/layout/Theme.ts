@@ -1,7 +1,7 @@
 import { PaletteMode } from "@mui/material";
 import { amber, deepOrange, grey } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
-import { myColors } from "../../helpers/colors";
+import { myColors } from "../../helpers/myColors";
 
 
 export let theme = createTheme({

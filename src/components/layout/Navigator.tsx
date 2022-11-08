@@ -7,12 +7,15 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { myColors } from "../../helpers/colors";
+import { myColors } from "../../helpers/myColors";
 import { paperClasses } from "@mui/material/Paper";
 import { CategoryProps, getPathDrawer, pathsDrawer } from "../../data/ItemsDrawer";
 import { getIcon } from "../../data/ItemsDrawer";
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/Store";
+import { setItemActive } from "../../redux/slices/DrawerItems";
+import { useDispatch } from "react-redux";
 type Props = {
   categoriesDrawer: CategoryProps[];
   PaperProps: any;
@@ -22,7 +25,6 @@ type Props = {
   logoContainerStyle: React.CSSProperties;
   sxDrawer: any;
   onClose: () => void;
-  handleItemDrawerClick: (categoryID: string, childrenID: string) => void;
 };
 
 export default function Navigator(props: Props) {
@@ -35,8 +37,10 @@ export default function Navigator(props: Props) {
     logoContainerStyle,
     sxDrawer,
     onClose,
-    handleItemDrawerClick,
   } = props;
+
+  const dispatch  = useDispatch()
+  const {itemActive} = useSelector((state: RootState) => state.drawerItems);
 
   return (
     <Drawer
@@ -83,9 +87,11 @@ export default function Navigator(props: Props) {
               >
                 <ListItem disablePadding key={childId}>
                   <ListItemButton
-                    selected={active}
+                    selected={itemActive.categoryId === id && itemActive.childId === childId}
                     sx={styles.item}
-                    onClick={() => handleItemDrawerClick(id, childId)}
+                    onClick={() => {
+                      dispatch(setItemActive({categoryId: id, childId: childId}))
+                    }}
                   >
                     <ListItemIcon>{getIcon(childId)}</ListItemIcon>
                     <ListItemText>{childId}</ListItemText>

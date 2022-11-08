@@ -1,20 +1,18 @@
 import React from "react";
 import { useMediaQuery } from "@mui/material";
 import Paperbase from "../Paperbase";
-import { myColors } from "../../../helpers/colors";
+import { myColors } from "../../../helpers/myColors";
 import Navigator from "../Navigator";
 import { theme } from "../Theme";
 import { CategoryProps } from "../../../data/ItemsDrawer";
 
 type Props = {
   categoriesDrawer: CategoryProps[];
-  handleItemDrawerClick: (categoryID: string, childrenID: string) => void;
   children: React.ReactNode;
 };
 
 export default function LayoutUI({
   categoriesDrawer,
-  handleItemDrawerClick,
   children,
 }: Props) {
   const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
@@ -38,7 +36,6 @@ export default function LayoutUI({
             }
           : { backgroundColor: styles.overlayDrawer }
       }
-      handleItemDrawerClick={handleItemDrawerClick}
     />
   );
   return (

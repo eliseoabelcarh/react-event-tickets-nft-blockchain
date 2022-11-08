@@ -3,7 +3,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Header from "./Header";
-import Dashboard from "../../pages/Dashboard";
 import { Theme } from "@mui/material";
 
 type Props = {

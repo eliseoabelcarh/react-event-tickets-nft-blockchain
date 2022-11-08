@@ -4,10 +4,18 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface DrawerItemsState {
     items: CategoryProps[]
+    itemActive:{
+        categoryId: string,
+        childId: string
+    }
 }
 
 const initialState: DrawerItemsState = {
-    items: categoriesDrawer
+    items: categoriesDrawer,
+    itemActive: {
+        categoryId: "",
+        childId:""
+    },
 }
 
 export const DrawerItemsSlice = createSlice({
@@ -17,10 +25,14 @@ export const DrawerItemsSlice = createSlice({
         setDrawerItems: (state, action: PayloadAction<CategoryProps[]>) => {
             state.items = [...action.payload]
         },
+        setItemActive: (state, action: PayloadAction<{categoryId: string, childId: string}>) => {
+            state.itemActive = {...action.payload}
+        }
+
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { setDrawerItems } = DrawerItemsSlice.actions
+export const { setDrawerItems, setItemActive } = DrawerItemsSlice.actions
 
 export default DrawerItemsSlice.reducer

@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { myColors } from "../helpers/colors";
+import { myColors } from "../helpers/myColors";
 
 type Props = {
   xs?: number;

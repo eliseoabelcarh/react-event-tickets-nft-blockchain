@@ -1,5 +1,5 @@
 import React from "react";
-import { myColors } from "../helpers/colors";
+import { myColors } from "../helpers/myColors";
 import {
   Typography,
   Box,
@@ -20,10 +20,13 @@ import SearchIcon from "@mui/icons-material/Search";
 import DirectionsIcon from "@mui/icons-material/Directions";
 import NavigateNext from "@mui/icons-material/NavigateNext";
 
+type Props = {
+  handleViewAll?: () => void;
+  viewAllText?: string;
+  placeholderText?: string;
+};
 
-type Props = {};
-
-export default function SearchBox({}: Props) {
+export default function SearchBox({ handleViewAll , viewAllText, placeholderText}: Props) {
   return (
     <Paper
       component="form"
@@ -37,8 +40,8 @@ export default function SearchBox({}: Props) {
     >
       <InputBase
         sx={{ ml: 1, flex: 1, color: myColors.ligthText, fontSize: "0.8rem" }}
-        placeholder="Filter by event"
-        inputProps={{ "aria-label": "filter by event" }}
+        placeholder={placeholderText}
+        inputProps={{ "aria-label": placeholderText }}
       />
       <IconButton
         type="button"
@@ -48,18 +51,20 @@ export default function SearchBox({}: Props) {
         <SearchIcon />
       </IconButton>
       <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-      <Typography
-        variant="caption"
-        sx={{ pl: "10px", color: myColors.ligthText, fontSize: 12 }}
-      >
-        {" "}
-        View all events{" "}
-      </Typography>
+
       <IconButton
         color="primary"
         sx={{ p: "0px", color: myColors.ligthText }}
         aria-label="directions"
+        onClick={handleViewAll}
       >
+        <Typography
+          variant="caption"
+          sx={{ pl: "10px", color: myColors.ligthText, fontSize: 12 }}
+        >
+          {" "}
+          {viewAllText}{" "}
+        </Typography>
         <NavigateNext />
       </IconButton>
     </Paper>

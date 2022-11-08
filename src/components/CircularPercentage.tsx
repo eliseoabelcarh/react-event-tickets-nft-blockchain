@@ -6,7 +6,7 @@ import {
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import { myColors } from "../helpers/colors";
+import { myColors } from "../helpers/myColors";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: "transparent",
