@@ -20,13 +20,12 @@ export type CategoryProps = {
   children: ItemProps[];
 };
 
-
-export const itemsDrawer ={
+export const itemsDrawer = {
   //** Categories */
   GENERAL: "General",
   NFT: "NFT",
   PERSONAL: "Personal",
-   //** Items */
+  //** Items */
   DASHBOARD: "Dashboard",
   EVENTS: "Events",
   ORDERS: "Orders",
@@ -34,7 +33,7 @@ export const itemsDrawer ={
   COLLECTIBLES: "Collectibles",
   AIRDROPS: "Airdrops",
   SETTINGS: "Settings",
-}
+};
 
 export let categoriesDrawer: CategoryProps[] = [
   {
@@ -55,9 +54,7 @@ export let categoriesDrawer: CategoryProps[] = [
   },
   {
     id: itemsDrawer.PERSONAL,
-    children: [
-      { id: itemsDrawer.SETTINGS, active: false },
-    ],
+    children: [{ id: itemsDrawer.SETTINGS, active: false }],
   },
 ];
 
@@ -65,6 +62,11 @@ export const pathsDrawer = {
   HOME: "/",
   DASHBOARD: "/dashboard",
   EVENTS: "/events",
+  ORDERS: "/orders",
+  CUSTOMERS: "/customers",
+  COLLECTIBLES: "/collectibles",
+  AIRDROPS: "/airdrops",
+  SETTINGS: "/settings",
 };
 
 export function getPathDrawer(itemDrawer: string) {
@@ -73,6 +75,16 @@ export function getPathDrawer(itemDrawer: string) {
       return pathsDrawer.DASHBOARD;
     case itemsDrawer.EVENTS:
       return pathsDrawer.EVENTS;
+    case itemsDrawer.ORDERS:
+      return pathsDrawer.ORDERS;
+    case itemsDrawer.CUSTOMERS:
+      return pathsDrawer.CUSTOMERS;
+    case itemsDrawer.COLLECTIBLES:
+      return pathsDrawer.COLLECTIBLES;
+    case itemsDrawer.AIRDROPS:
+      return pathsDrawer.AIRDROPS;
+    case itemsDrawer.SETTINGS:
+      return pathsDrawer.SETTINGS;
     default:
       return pathsDrawer.HOME;
   }
@@ -96,5 +108,5 @@ export function getIcon(type: string) {
       return <SettingsIcon />;
     default:
       return <HomeIcon />;
-}}
-
+  }
+}

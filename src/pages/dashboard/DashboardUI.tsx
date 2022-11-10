@@ -3,7 +3,7 @@ import HeaderTitle from "../../components/layout/HeaderTitle";
 import { itemsDrawer } from "../../data/ItemsDrawer";
 import CardStatistics from "../../components/CardStatistics";
 import { myColors } from "../../helpers/myColors";
-import { Box, Grid, Card, Divider } from "@mui/material";
+import { Box, Grid, Card, Divider, Typography } from "@mui/material";
 //import "react-circular-progressbar/dist/styles.css";
 import CircularPercentage from "../../components/CircularPercentage";
 import SearchBox from "../../components/SearchBox";
@@ -25,6 +25,7 @@ type Props = {
   handleViewEvents?: () => void;
   viewEventsText?: string;
   placeholderFilterByText?: string;
+  handleChangeFilterBoxInputText?: (text: string) => void;
 };
 
 export default function DashboardUI({
@@ -33,6 +34,7 @@ export default function DashboardUI({
   handleViewEvents,
   viewEventsText,
   placeholderFilterByText,
+  handleChangeFilterBoxInputText,
 }: Props) {
   return (
     <React.Fragment>
@@ -66,21 +68,40 @@ export default function DashboardUI({
             </Grid>
 
             <Grid item xs={12} sm={9} sx={{ padding: 1 }}>
+
               <SearchBox
                 handleViewAll={handleViewEvents}
                 viewAllText={viewEventsText}
                 placeholderText={placeholderFilterByText}
+                handleChangeInputText={handleChangeFilterBoxInputText}
               />
 
               <Grid container spacing={2} sx={{ mt: 2 }}>
-                {eventsSales?.map((event, index) => (
-                  <Grid item xs={6} sm={4} key={index}>
-                    <LinearPercentage
-                      title={event.title}
-                      percentage={event.percentage}
-                    />
+                {eventsSales && eventsSales.length > 0 ? (
+                  eventsSales.map((event, index) => (
+                    <Grid item xs={6} sm={4} key={index}>
+                      <LinearPercentage
+                        title={event.title}
+                        percentage={event.percentage}
+                      />
+                    </Grid>
+                  ))
+                ) : (
+                  <Grid item xs={12} sm={12}>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        flex: 1,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        color: myColors.ligthText,
+                      }}
+                    >
+                     No events found
+                    </Typography>
                   </Grid>
-                ))}
+                )}
               </Grid>
             </Grid>
           </Grid>

@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { itemsDrawer } from "../../data/ItemsDrawer";
 import { setItemActive } from "../../redux/slices/DrawerItems";
 
-const eventsSales = [
+const eventsSalesInitial = [
   { title: "Event 1", percentage: 40 },
   { title: "Event 2", percentage: 81 },
   { title: "Event 3", percentage: 61 },
@@ -35,17 +35,22 @@ const statisticsCards = [
   },
 ];
 
-
-
 type Props = {};
 
 export default function DashboardScreen({}: Props) {
-
   const dispatch = useDispatch();
+
+  //usestate for eventSales
+  const [eventsSales, setEventsSales] = React.useState(eventsSalesInitial);
 
   useEffect(() => {
     //set active according to the path and screen
-     dispatch(setItemActive({categoryId: itemsDrawer.GENERAL, childId: itemsDrawer.DASHBOARD}))
+    dispatch(
+      setItemActive({
+        categoryId: itemsDrawer.GENERAL,
+        childId: itemsDrawer.DASHBOARD,
+      })
+    );
   }, []);
 
   const VIEW_EVENTS_TEXT = "View all events";
@@ -56,7 +61,13 @@ export default function DashboardScreen({}: Props) {
   const handleViewEvents = () => {
     navigate(pathsDrawer.EVENTS);
   };
-
+  const handleChangeFilterBoxInputText = (text: string) => {
+    console.log("handleChangeFilterBoxInputText:::::", text);
+    const filteredEvents = eventsSalesInitial.filter((item) =>
+      item.title.toLowerCase().includes(text.toLowerCase())
+    );
+    setEventsSales(filteredEvents);
+  };
   return (
     <DashboardUI
       statisticsCards={statisticsCards}
@@ -64,6 +75,7 @@ export default function DashboardScreen({}: Props) {
       handleViewEvents={handleViewEvents}
       viewEventsText={VIEW_EVENTS_TEXT}
       placeholderFilterByText={PLACEHOLDER_FILTER_BY_TEXT}
+      handleChangeFilterBoxInputText={handleChangeFilterBoxInputText}
     />
   );
 }
