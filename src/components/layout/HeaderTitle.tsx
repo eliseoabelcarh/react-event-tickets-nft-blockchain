@@ -56,6 +56,16 @@ export default function HeaderTitle({ title = "Titulo" }: Props) {
               </Button>
             </Grid>
             <Grid item>
+              <Button
+                sx={{ borderColor: lightColor }}
+                variant="outlined"
+                color="secondary"
+                size="small"
+              >
+                Web setup
+              </Button>
+            </Grid>
+            <Grid item>
               <Tooltip title="Help">
                 <IconButton color="secondary">
                   <HelpIcon />
