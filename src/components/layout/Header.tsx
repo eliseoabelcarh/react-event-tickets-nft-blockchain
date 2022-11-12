@@ -15,6 +15,8 @@ import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import Badge from "@mui/material/Badge";
 import { myColors } from "../../helpers/myColors";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/Store";
 
 interface HeaderProps {
   onDrawerToggle: () => void;
@@ -22,6 +24,7 @@ interface HeaderProps {
 
 export default function Header(props: HeaderProps) {
   const { onDrawerToggle } = props;
+  const { itemActive } = useSelector((state: RootState) => state.drawerItems);
 
   const itemCategory = {
     boxShadow: "0 -1px 0 rgb(255,255,255,0.1) inset",
@@ -47,6 +50,18 @@ export default function Header(props: HeaderProps) {
                 <MenuIcon />
               </IconButton>
             </Grid>
+            <Grid item>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", sm: "block" },
+                }}
+              >
+                {itemActive.childId}
+              </Typography>
+            </Grid>
             <Grid item xs />
             <Grid item>
               <Link
@@ -70,7 +85,7 @@ export default function Header(props: HeaderProps) {
                 <IconButton color="inherit">
                   <Badge badgeContent={4} color="warning">
                     <NotificationsIcon color="secondary" />
-                  </Badge> 
+                  </Badge>
                 </IconButton>
               </Tooltip>
             </Grid>
@@ -82,7 +97,6 @@ export default function Header(props: HeaderProps) {
           </Grid>
         </Toolbar>
       </AppBar>
-      
     </React.Fragment>
   );
 }
