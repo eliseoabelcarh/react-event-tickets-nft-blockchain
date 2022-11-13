@@ -35,6 +35,14 @@ export const myColors = {
     two: "#b537f2",
     three: "#8a2be2",
     four: "#120052"
+  },
+  buttons:{
+    outlined:{
+      backgroundBase:"rgba(3,14,32,1)",
+      backgroundBaseHover:"rgba(3,14,32,0.5)",
+      backgroundOverlay:"rgba(12,28,54,1)",
+      backgroundOverlayHover:"rgba(12,28,54,1)",
+    }
   }
 
 

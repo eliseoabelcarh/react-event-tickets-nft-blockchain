@@ -6,8 +6,8 @@ import Grid from "@mui/material/Grid";
 import HelpIcon from "@mui/icons-material/Help";
 import IconButton from "@mui/material/IconButton";
 import Link from "@mui/material/Link";
-import MenuIcon from "@mui/icons-material/Menu";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+
+import {Menu,Shop, AccountBox, Notifications, Logout} from "@mui/icons-material";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import Toolbar from "@mui/material/Toolbar";
@@ -17,6 +17,39 @@ import Badge from "@mui/material/Badge";
 import { myColors } from "../../helpers/myColors";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/Store";
+import OptionsButton from "../buttons/OptionsButton";
+import { Paper } from "@mui/material";
+
+const sellerPortalOptions = {
+  title: "Seller Portal",
+  options: [
+    {
+      title: "Marketplace",
+      icon: <Shop />,
+      handleClick: () => console.log("Go to MarketPlace"),
+    },
+  ],
+};
+const MyAccountOptions = {
+  title: "My Account",
+  options: [
+    {
+      title: "My Profile",
+      icon: <AccountBox />,
+      handleClick: () => console.log("Go to My Profile"),
+    },
+    {
+      title: "Logout",
+      icon: <Logout />,
+      handleClick: () => console.log("Logout"),
+    },
+  ],
+  buttonToShow: () => (
+    <Paper sx={{ p: 0, backgroundColor: "transparent" }}>
+      <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
+    </Paper>
+  ),
+};
 
 interface HeaderProps {
   onDrawerToggle: () => void;
@@ -33,7 +66,7 @@ export default function Header(props: HeaderProps) {
   return (
     <React.Fragment>
       <AppBar
-        color="primary" //primary
+        color="primary"
         position="sticky"
         elevation={0}
         style={itemCategory}
@@ -47,7 +80,7 @@ export default function Header(props: HeaderProps) {
                 onClick={onDrawerToggle}
                 edge="start"
               >
-                <MenuIcon />
+                <Menu/>
               </IconButton>
             </Grid>
             <Grid item>
@@ -63,36 +96,28 @@ export default function Header(props: HeaderProps) {
               </Typography>
             </Grid>
             <Grid item xs />
+
             <Grid item>
-              <Link
-                href="/"
-                variant="body2"
-                sx={{
-                  textDecoration: "none",
-                  color: myColors.ligthText,
-                  "&:hover": {
-                    color: "common.white",
-                  },
-                }}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Go to docs
-              </Link>
+              <OptionsButton
+                title={sellerPortalOptions.title}
+                childrenItems={sellerPortalOptions.options}
+              />
             </Grid>
             <Grid item>
               <Tooltip title="Alerts • No alerts">
                 <IconButton color="inherit">
                   <Badge badgeContent={4} color="warning">
-                    <NotificationsIcon color="secondary" />
+                    <Notifications color="secondary" />
                   </Badge>
                 </IconButton>
               </Tooltip>
             </Grid>
             <Grid item>
-              <IconButton color="inherit" sx={{ p: 0.5 }}>
-                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
-              </IconButton>
+              <OptionsButton
+                buttonToClickChildren={MyAccountOptions.buttonToShow()}
+                title={MyAccountOptions.title}
+                childrenItems={MyAccountOptions.options}
+              />
             </Grid>
           </Grid>
         </Toolbar>

@@ -16,6 +16,7 @@ import Typography from "@mui/material/Typography";
 import Badge from "@mui/material/Badge";
 import { myColors } from "../../helpers/myColors";
 import { CssBaseline } from "@mui/material";
+import OutlinedButton from "../buttons/OutlinedButton";
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
@@ -23,10 +24,11 @@ type Props = {
   title?: string;
 };
 
-export default function HeaderTitle({ title = "Titulo" }: Props) {
+const toolTipText = "Click to see help and tutorials";
+
+export default function HeaderTitle({ title }: Props) {
   return (
     <React.Fragment>
-     
       <AppBar
         component="div"
         color="transparent" //primary
@@ -36,37 +38,26 @@ export default function HeaderTitle({ title = "Titulo" }: Props) {
       >
         <Toolbar>
           <Grid container alignItems="center" spacing={1}>
-            <Grid item xs>
+            <Grid item>
               <Typography
-                color={myColors.ligthText}
                 variant="h6"
-                component="h1"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", sm: "block" },
+                  color: myColors.ligthText,
+                }}
               >
-                {title}
+                {title ? title : ""}
               </Typography>
             </Grid>
+            <Grid item xs />
             <Grid item>
-              <Button
-                sx={{ borderColor: lightColor }}
-                variant="outlined"
-                color="secondary"
-                size="small"
-              >
-                Web setup
-              </Button>
+              <OutlinedButton title="Docs" />
             </Grid>
+
             <Grid item>
-              <Button
-                sx={{ borderColor: lightColor }}
-                variant="outlined"
-                color="secondary"
-                size="small"
-              >
-                Web setup
-              </Button>
-            </Grid>
-            <Grid item>
-              <Tooltip title="Help">
+              <Tooltip title={toolTipText}>
                 <IconButton color="secondary">
                   <HelpIcon />
                 </IconButton>

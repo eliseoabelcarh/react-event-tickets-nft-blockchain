@@ -34,13 +34,13 @@ const CustomButton = styled(ButtonUnstyled)`
 
   &:hover {
     background-color: ${blue[600]};
-    background-image: linear-gradient(90deg, #01c1ff 0%, #0067ff 75%);
+    background-image: linear-gradient(90deg, #01c1ff 20%, #0067ff 95%);
     transform: translateY(-1.5px);
   }
 
   &.${buttonUnstyledClasses.active} {
     background-color: ${blue[700]};
-    background-image: linear-gradient(90deg, #01c1ff 20%, #0067ff 95%);
+    background-image: linear-gradient(90deg, #01c1ff 0%, #0067ff 35%);
   }
 
   &.${buttonUnstyledClasses.focusVisible} {

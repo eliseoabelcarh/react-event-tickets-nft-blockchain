@@ -38,7 +38,7 @@ export default function DashboardUI({
 }: Props) {
   return (
     <React.Fragment>
-      <HeaderTitle title={itemsDrawer.DASHBOARD} />
+      <HeaderTitle />
       <Box sx={{ flexGrow: 1, padding: 2, backgroundColor: "transparent" }}>
         <Grid container spacing={3}>
           {statisticsCards?.map((item, index) => (

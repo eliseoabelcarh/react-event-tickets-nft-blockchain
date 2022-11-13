@@ -91,6 +91,7 @@ export default function Navigator(props: Props) {
                     sx={styles.item}
                     onClick={() => {
                       dispatch(setItemActive({categoryId: id, childId: childId}))
+                      isMobile? onClose() : null
                     }}
                   >
                     <ListItemIcon>{getIcon(childId)}</ListItemIcon>
