@@ -7,6 +7,8 @@ import {
 } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import "./index.css";
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from 'react-router-dom';

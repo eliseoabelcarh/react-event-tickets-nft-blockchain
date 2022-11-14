@@ -31,6 +31,8 @@ const CustomButton = styled(ButtonUnstyled)`
   justify-content: center;
   align-items: center;
   display: inline-flex;
+  width: 100%;
+  margin: 0;
 
   &:hover {
     background-color: ${blue[600]};

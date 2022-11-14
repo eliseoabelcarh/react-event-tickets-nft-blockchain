@@ -24,58 +24,79 @@ type Props = {
   handleViewAll?: () => void;
   viewAllText?: string;
   placeholderText?: string;
-  handleChangeInputText?:  (eventTargetValue:string) => void;
+  handleChangeInputText?: (eventTargetValue: string) => void;
+ 
 };
 
-export default function SearchBox({ handleViewAll , viewAllText, placeholderText, handleChangeInputText}: Props) {
+export default function SearchBox({
+  handleViewAll,
+  viewAllText,
+  placeholderText,
+  handleChangeInputText,
+  
+}: Props) {
   return (
-    <Grid item xs={12} sm={9}>
-    <Paper
-      component="form"
-      sx={{
-        p: "0px 4px",
-        display: "flex",
-        alignItems: "center",
-        //width: '75%',
-        backgroundColor: myColors.cardHeaderBackgroundColor,
-      }}
-    >
-      <InputBase
-        sx={{ ml: 1, flex: 1, color: myColors.ligthText, fontSize: "0.8rem" }}
-        placeholder={placeholderText}
-        inputProps={{ "aria-label": placeholderText }}
-         //onChange event target
-         onChange={(event) => {
-          console.log("searchbox",event.target.value);
-          handleChangeInputText ? handleChangeInputText(event.target.value) : null;
+   
+      <Paper
+        component="form"
+        sx={{
+          p: "2.5px 8px",
+          display: "flex",
+          alignItems: "center",
+          //width: '75%',
+          backgroundColor: myColors.cardHeaderBackgroundColor,
+          borderRadius: "0.2rem",
         }}
-      />
-      <IconButton
-        type="button"
-        sx={{ p: "10px", color: myColors.ligthText }}
-        aria-label="search"
-        disabled
       >
-        <SearchIcon />
-      </IconButton>
-      <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-
-      <IconButton
-        color="primary"
-        sx={{ p: "0px", color: myColors.ligthText }}
-        aria-label="directions"
-        onClick={handleViewAll}
-      >
-        <Typography
-          variant="caption"
-          sx={{ pl: "10px", color: myColors.ligthText, fontSize: 12 }}
+        {" "}
+        <IconButton
+          type="button"
+          sx={{ p: "0px", color: myColors.ligthText }}
+          aria-label="search"
+          disabled={false}
         >
-          {" "}
-          {viewAllText}{" "}
-        </Typography>
-        <NavigateNext />
-      </IconButton>
-    </Paper>
-  </Grid>
+          <SearchIcon sx={{fontSize:'1rem'}} />
+        </IconButton>
+        <InputBase
+          sx={{ p:0, ml: 1, flex: 1, color: myColors.ligthText, fontSize: "0.8rem" }}
+          placeholder={placeholderText}
+          inputProps={{ "aria-label": placeholderText }}
+          //onChange event target
+          onChange={(event) => {
+            console.log("searchbox", event.target.value);
+            handleChangeInputText
+              ? handleChangeInputText(event.target.value)
+              : null;
+          }}
+        />
+
+
+        { viewAllText ? 
+        (
+        <>
+        <Divider sx={{ height: 18, m: 0.5 }} orientation="vertical" />
+        <IconButton
+          color="primary"
+          sx={{ p: "0px", color: myColors.ligthText }}
+          aria-label="directions"
+          onClick={handleViewAll}
+        >
+          <Typography
+            variant="caption"
+            sx={{ pl: "10px", color: myColors.ligthText, fontSize: 12 }}
+          >
+            {" "}
+            {viewAllText}{" "}
+          </Typography>
+          <NavigateNext />
+        </IconButton>
+        </>
+        )
+        : null}
+
+
+
+      </Paper>
+  
   );
 }

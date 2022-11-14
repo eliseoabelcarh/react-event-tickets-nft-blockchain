@@ -21,6 +21,7 @@
     "postcss": "latest",
     "react": "latest",
     "react-circular-progressbar": "^2.1.0",
+    "react-date-range": "^1.4.0",
     "react-dom": "latest",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
@@ -48,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-date-range": "^1.4.4"
   }
 }
