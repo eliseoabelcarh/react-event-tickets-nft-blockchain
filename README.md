@@ -10,3 +10,4 @@ Install it and run:
 npm install
 npm start
 ```
+![Screenshot](previa1.png)
