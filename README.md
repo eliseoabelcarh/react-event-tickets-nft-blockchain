@@ -1,4 +1,4 @@
-# Event Tickets Sellers NTFs Blockchain
+# Event Tickets Sellers NFTs Blockchain
 
 Info in progress....
 
