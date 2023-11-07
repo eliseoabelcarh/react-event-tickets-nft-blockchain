@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/react-event-tickets-nft-blockchain/static/css/main.5522b10f.css",
+    "main.js": "/react-event-tickets-nft-blockchain/static/js/main.0e6f868b.js",
+    "static/js/496.47a234ba.chunk.js": "/react-event-tickets-nft-blockchain/static/js/496.47a234ba.chunk.js",
+    "static/media/hero-bg.webp": "/react-event-tickets-nft-blockchain/static/media/hero-bg.ac1a26de69010b29fda4.webp",
+    "index.html": "/react-event-tickets-nft-blockchain/index.html",
+    "main.5522b10f.css.map": "/react-event-tickets-nft-blockchain/static/css/main.5522b10f.css.map",
+    "main.0e6f868b.js.map": "/react-event-tickets-nft-blockchain/static/js/main.0e6f868b.js.map",
+    "496.47a234ba.chunk.js.map": "/react-event-tickets-nft-blockchain/static/js/496.47a234ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5522b10f.css",
+    "static/js/main.0e6f868b.js"
+  ]
+}
