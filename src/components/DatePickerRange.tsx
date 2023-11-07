@@ -21,12 +21,12 @@ const firstRange: Range = {
 };
 
 type Props = {
-  getRangeSelected?: (range: Range) => void;
+  handleRangeSelected?: (range: Range) => void;
 
 };
 
 export default function DatePickerRange ({
-  getRangeSelected,
+  handleRangeSelected,
 
 }: Props) {
   const [ranges, setRanges] = useState([firstRange] as Range[]);
@@ -41,10 +41,9 @@ export default function DatePickerRange ({
       editableDateInputs={true}
       onChange={(item) => {
         setRanges([item.selection]);
-        getRangeSelected
-          ? getRangeSelected(ranges[0])
-          : console.log("no getRangeSelected");
-        console.log("second", ranges);
+        handleRangeSelected
+          ? handleRangeSelected(ranges[0])
+          : console.log("no handleRangeSelected");
       }}
       moveRangeOnFirstSelection={false}
       ranges={ranges}
